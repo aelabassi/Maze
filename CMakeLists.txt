@@ -1,8 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 # Project name
-project(Maze C)
-
+project(Maze)
 # Set C standard
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED True)
@@ -15,10 +14,9 @@ include_directories(${SDL2_INCLUDE_DIRS})
 
 # Source files
 file(GLOB SOURCES "src/*.c")
-
+file(GLOB HEADERS "include/*.h")
 # Create executable
-add_executable(Maze ${SOURCES})
-
+add_executable(Maze Maze.c ${SOURCES} ${HEADERS})
 # Link SDL2
 target_link_libraries(Maze PRIVATE SDL2::SDL2)
 
@@ -43,7 +41,3 @@ else()
     target_compile_options(Maze PRIVATE -Wall -Wextra -Wpedantic)
 endif()
 
-# If you need to link math library (usually needed on Unix-like systems)
-if(UNIX)
-    target_link_libraries(Maze m)
-endif()
