@@ -40,9 +40,33 @@ int create_window(SDL_instance *instance)
  */
 void draw_maze(SDL_instance *instance)
 {
-    SDL_Rect rect = {0, 0, 50, 50};
+    SDL_Rect rect = {0, 0, 500, 500};
 
     SDL_SetRenderDrawColor(instance->renderer, 255, 255, 255, 255);
     SDL_RenderFillRect(instance->renderer, &rect);
 }
+/**
+ * poll_events - add events
+ * Return: 1 on quit or keypress, 0 otherwise
+ */
+ int poll_events()
+{
+     SDL_Event event;
+     SDL_KeyboardEvent key;
 
+     while(SDL_PollEvent(&event))
+     {
+         switch (event.type)
+         {
+             case SDL_QUIT:
+                 return (1);
+             case SDL_KEYDOWN:
+                 key = event.key;
+                 /* if 'ESCAPE' is passed */
+                 if (key.keysym.scancode == 0x29)
+                     return (1);
+                 break;
+         }
+     }
+     return (0);
+}

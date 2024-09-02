@@ -8,7 +8,7 @@ int main(void)
 {
     SDL_instance instance;
 
-    if (create_window(&instance))
+    if (create_window(&instance) != 0)
         return (1);
 
 
@@ -16,11 +16,17 @@ int main(void)
     {
        SDL_SetRenderDrawColor(instance.renderer, 0, 0, 0, 255);
         SDL_RenderClear(instance.renderer);
+        if (poll_events() == 1)
+            break;
         /* Drawing some stuff*/
         draw_maze(&instance);
         SDL_RenderPresent(instance.renderer);
     
     }
+    SDL_DestroyRenderer(instance.renderer);
+    SDL_DestroyWindow(instance.window);
+    SDL_Quit();
+    
 
 
     return (0);

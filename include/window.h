@@ -28,6 +28,7 @@ typedef struct SDL_instance
 
 int create_window(SDL_instance *instance);
 void draw_maze(SDL_instance *instance);
+int poll_events();
 
 
 
