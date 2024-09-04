@@ -23,6 +23,8 @@ int create_window(SDL_instance *instance)
 
 	instance->renderer = SDL_CreateRenderer(instance->window, -1,
 	SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    SDL_SetRenderDrawColor(instance->renderer, 255, 0, 0, 255);
+    SDL_RenderPresent(instance->renderer);
 	if (!instance->renderer)
     {
 		SDL_DestroyWindow(instance->window);
