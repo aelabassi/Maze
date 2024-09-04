@@ -12,11 +12,11 @@ find_package(SDL2 REQUIRED COMPONENTS SDL2)
 # Include directories
 include_directories(${SDL2_INCLUDE_DIRS})
 
-# Source files
-file(GLOB SOURCES "src/*.c")
-file(GLOB HEADERS "include/*.h")
+# Source files and headers (you can add more source files here)
+file(GLOB SOURCES "src/*.cc")
+file(GLOB HEADERS "include/*.hh")
 # Create executable
-add_executable(Maze Maze.c ${SOURCES} ${HEADERS})
+add_executable(Maze Maze.cc ${SOURCES} ${HEADERS})
 # Link SDL2
 target_link_libraries(Maze PRIVATE SDL2::SDL2)
 
