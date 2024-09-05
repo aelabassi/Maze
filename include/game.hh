@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include <iostream>
 #include <stdlib.h>
+#include <SDL_image.h>
 /**
  * @file game.hh
  * @brief Header file for game class: initializes the game and runs the game loop
