@@ -5,6 +5,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <SDL_image.h>
+#include "Entity.hh"
 /**
  * @file game.hh
  * @brief Header file for game class: initializes the game and runs the game loop
@@ -17,9 +18,12 @@ public:
     void init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
     void handleEvents();
     void update();
-    void render();
+    void clear();
+    void render_texture(Entity& entity);
+    void display();
     void clean();
-    bool running();
+    bool running() const;
+    SDL_Texture *loadTexture(const char* filepath);
 private:
     int cnt;
     bool isRunning;

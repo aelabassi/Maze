@@ -1,8 +1,6 @@
 #include "game.hh"
 #include "SDL_image.h"
 
-SDL_Texture *playerTex;
-
 Game::Game(){
     cnt = 0;
 }
@@ -28,9 +26,18 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     } else {
         isRunning = false;
     }
-    SDL_Surface *tmpSurface = IMG_Load("../assets/gojo_pixeled.png");
-    playerTex = SDL_CreateTextureFromSurface(renderer, tmpSurface);
-    SDL_FreeSurface(tmpSurface);
+
+}
+
+SDL_Texture *Game::loadTexture(const char* filepath){
+    SDL_Texture *texture = nullptr;
+    texture = IMG_LoadTexture(renderer, filepath);
+    if(texture == nullptr){
+        std::cout << "Failed to load texture" << SDL_GetError()  << std::endl;
+    }
+
+    return texture;
+
 }
 
 void Game::handleEvents(){
@@ -50,10 +57,23 @@ void Game::update(){
     std::cout << cnt << std::endl;
 }
 
-void Game::render(){
+void Game::clear(){
     SDL_RenderClear(renderer);
-    // This is where we would add stuff to render
-    SDL_RenderCopy(renderer, playerTex, NULL, NULL);
+}
+void Game::render_texture(Entity& entity){
+    SDL_Rect src_dims;
+    src_dims.x = entity.getCurrentFrame().x;
+    src_dims.y = entity.getCurrentFrame().y;
+    src_dims.w = entity.getCurrentFrame().w;
+    src_dims.h = entity.getCurrentFrame().h;
+    SDL_Rect dst_dims;
+    dst_dims.x = entity.getX()*4;
+    dst_dims.y = entity.getY()*4;
+    dst_dims.w = entity.getCurrentFrame().w * 4;
+    dst_dims.h = entity.getCurrentFrame().h * 4;
+    SDL_RenderCopy(renderer, entity.getTexture(), &src_dims, &dst_dims);
+}
+void Game::display(){
     SDL_RenderPresent(renderer);
 }
 
@@ -64,6 +84,6 @@ void Game::clean(){
     std::cout << "Game Cleaned..." << std::endl;
 }
 
-bool Game::running(){
+bool Game::running() const{
     return isRunning;
 }
