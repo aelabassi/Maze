@@ -17,7 +17,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
         if(window){
             std::cout << "Window created!" << std::endl;
         }
-        renderer = SDL_CreateRenderer(window, -1, 0);
+        renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED && SDL_RENDERER_PRESENTVSYNC);
         if(renderer){
             SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
             std::cout << "Renderer created!" << std::endl;
@@ -67,8 +67,8 @@ void Game::render_texture(Entity& entity){
     src_dims.w = entity.getCurrentFrame().w;
     src_dims.h = entity.getCurrentFrame().h;
     SDL_Rect dst_dims;
-    dst_dims.x = entity.getX()*4;
-    dst_dims.y = entity.getY()*4;
+    dst_dims.x = entity.getPosition().x*4;
+    dst_dims.y = entity.getPosition().y*4;
     dst_dims.w = entity.getCurrentFrame().w * 4;
     dst_dims.h = entity.getCurrentFrame().h * 4;
     SDL_RenderCopy(renderer, entity.getTexture(), &src_dims, &dst_dims);

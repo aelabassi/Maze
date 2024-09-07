@@ -1,7 +1,7 @@
 #include "Entity.hh"
 
-Entity::Entity(float x, float y, SDL_Texture *texture)
-: x(x), y(y), texture(texture)
+Entity::Entity(Vector2D pos, SDL_Texture *texture)
+:position(pos) , texture(texture)
 {
     currentFrame.x = 0;
     currentFrame.y = 0;
