@@ -52,3 +52,19 @@ struct Vector2D
         return *this;
     }
 };
+
+
+struct Transform {
+    float x, y;
+
+    Transform(float _x, float _y) : x(_x), y(_y) {}
+
+    void print(std::string msg = ""){
+        std::cout << msg << " ( x: " << x << ", y: " << y << " )" << std::endl;
+    }
+
+
+    inline void TranslateX(float dx) { x += dx; }
+    inline void TranslateY(float dy) { y += dy; }
+    inline void Translate(Vector2D v) { x += v.x; y += v.y; }
+};

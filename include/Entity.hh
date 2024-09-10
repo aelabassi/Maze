@@ -2,6 +2,11 @@
 #include <SDL2/SDL.h>
 #include <SDL_image.h>
 #include "Math.hh"
+
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 600
+
+
 /**
  * @brief Base class for all entities in the game
  * @file Entity.hh

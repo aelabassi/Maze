@@ -1,6 +1,7 @@
 #include "game.hh"
 #include <vector>
 #include "Utils.hh"
+#include "Math.hh"
 /**
  * main - Entry point
  * Return: 0 on success, 1 on failure
@@ -23,6 +24,8 @@ int main(int argc, char *argv[])
     const float timeStep = 0.01f;
     float accumulator = 0.0f;
     float currentTime = Utils::hireTimeInSeconds();
+    Transform transform(0, 0);
+    
 
     while (game.running())
     {
@@ -33,6 +36,7 @@ int main(int argc, char *argv[])
         while (accumulator >= timeStep) {
             game.handleEvents();
             // game.update();
+            transform.print("Coordinates");
             game.clear();
             for (auto &entity: entities) {
                 game.render_texture(entity);
@@ -44,7 +48,7 @@ int main(int argc, char *argv[])
         game.display();
         std::cout << Utils::hireTimeInSeconds() << std::endl;
     }
-    game.clean();
+    game.Clean();
     return (0);
 
 

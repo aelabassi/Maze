@@ -52,7 +52,7 @@ void Game::handleEvents(){
     }
 }
 
-void Game::update(){
+void Game::Update(){
     cnt++;
     std::cout << cnt << std::endl;
 }
@@ -77,7 +77,7 @@ void Game::display(){
     SDL_RenderPresent(renderer);
 }
 
-void Game::clean(){
+void Game::Clean(){
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     SDL_Quit();
