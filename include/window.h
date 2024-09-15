@@ -9,6 +9,9 @@
 #include <time.h>
 #include <SDL2/SDL.h>
 
+typedef uint32_t color_t;
+extern int isGameRunning;
+
 /**
  * SDL_instance - SDL instance
  * @window: The window to create
@@ -23,6 +26,16 @@ typedef struct SDL_instance
 
 
 
+/* Functions-variables-structs for draw */
+
+int initializeWindow(void);
+void destroyWindow(SDL_instance *instance);
+void clearColorBuffer(color_t color);
+void render_game(void);
+void renderColorBuffer(SDL_instance *instance);
+void drawPixel(int x, int y, color_t color);
+void drawRect(int x, int y, int width, int height, color_t color);
+void drawLine(int x0, int y0, int x1, int y1, color_t color);
 
 
 

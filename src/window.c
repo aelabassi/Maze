@@ -1,4 +1,8 @@
 #include "window.h"
+#include "game.h"
+
+static color_t *colorBuffer;
+static SDL_Texture *colorBufferTexture;
 /**
  * create_window - Create a window with a renderer
  * @instance: The instance to create
@@ -6,14 +10,18 @@
  */
 int create_window(SDL_instance *instance)
 {
+    SDL_DisplayMode display;
+    int fullScreenWidth, fullScreenHeight;
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
     {
 		fprintf(stderr, "Unable to initialize SDL: %s\n", SDL_GetError());
 		return (1);
     }
-
+    SDL_GetCurrentDisplayMode(0, &display);
+    fullScreenWidth = display.w;
+    fullScreenHeight = display.h;
 	instance->window = SDL_CreateWindow("SDL2 Window",
-	SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, 0);
+	SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, fullScreenWidth, fullScreenHeight, 0);
 	if (!instance->window)
     {
 		fprintf(stderr, "Unable to create window: %s\n", SDL_GetError());
@@ -25,6 +33,7 @@ int create_window(SDL_instance *instance)
 	SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     SDL_SetRenderDrawColor(instance->renderer, 255, 0, 0, 255);
     SDL_RenderPresent(instance->renderer);
+
 	if (!instance->renderer)
     {
 		SDL_DestroyWindow(instance->window);
@@ -33,42 +42,62 @@ int create_window(SDL_instance *instance)
 		return (1);
     }
 
+    colorBuffer = malloc(sizeof(color_t) * SCREEN_WIDTH * SCREEN_HEIGHT);
+    colorBufferTexture = SDL_CreateTexture(instance->renderer, SDL_PIXELFORMAT_RGBA32,
+                                           SDL_TEXTUREACCESS_STREAMING, SCREEN_WIDTH, SCREEN_HEIGHT);
 	return (0);
 }
 
 /**
- * draw_maze - Draw the maze
- * @instance: The instance to draw
+ * DestroyWindow - Destroy a window with a renderer
+ *@instance: The instance to destroy
  */
-void draw_maze(SDL_instance *instance)
+void destroyWindow(SDL_instance *instance)
 {
-    SDL_Rect rect = {0, 0, 500, 500};
-
-    SDL_SetRenderDrawColor(instance->renderer, 255, 255, 255, 255);
-    SDL_RenderFillRect(instance->renderer, &rect);
+    free(colorBuffer);
+    SDL_DestroyTexture(colorBufferTexture);
+    SDL_DestroyRenderer(instance->renderer);
+    SDL_DestroyWindow(instance->window);
+    SDL_Quit();
 }
+
 /**
- * poll_events - add events
- * Return: 1 on quit or keypress, 0 otherwise
+ * clearColorBuffer - clear the color buffer
+ * @color: color to clear with
  */
- int poll_events()
+void clearColorBuffer(color_t color)
 {
-     SDL_Event event;
-     SDL_KeyboardEvent key;
-
-     while(SDL_PollEvent(&event))
-     {
-         switch (event.type)
-         {
-             case SDL_QUIT:
-                 return (1);
-             case SDL_KEYDOWN:
-                 key = event.key;
-                 /* if 'ESCAPE' is passed */
-                 if (key.keysym.scancode == 0x29)
-                     return (1);
-                 break;
-         }
-     }
-     return (0);
+    int i;
+    for (i = 0; i < SCREEN_WIDTH * SCREEN_HEIGHT; i++)
+        colorBuffer[i] = color;
 }
+
+/**
+ * renderColorBuffer - render buffer for every frame
+ *@instance: The instance to render
+*/
+
+void renderColorBuffer(SDL_instance *instance)
+{
+    SDL_UpdateTexture(
+            colorBufferTexture,
+            NULL,
+            colorBuffer,
+            (int)(SCREEN_WIDTH * sizeof(color_t))
+    );
+    SDL_RenderCopy(instance->renderer, colorBufferTexture, NULL, NULL);
+    SDL_RenderPresent(instance->renderer);
+}
+
+/**
+ * drawPixel - assign a color to each pixel
+ * @x: x pixel coordinate
+ * @y: y pixel coordinate
+ * @color: pixel color
+*/
+
+void drawPixel(int x, int y, color_t color)
+{
+    colorBuffer[(SCREEN_WIDTH * y) + x] = color;
+}
+
