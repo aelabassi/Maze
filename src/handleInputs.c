@@ -2,31 +2,6 @@
 #include "game.h"
 
 /**
- * poll_events - add events
- * Return: 1 on quit or keypress, 0 otherwise
- */
-int poll_events(void)
-{
-    SDL_Event event;
-    SDL_KeyboardEvent key;
-
-    while(SDL_PollEvent(&event))
-    {
-        switch (event.type)
-        {
-            case SDL_QUIT:
-                return (1);
-            case SDL_KEYDOWN:
-                key = event.key;
-                /* if 'ESCAPE' is passed */
-                if (key.keysym.scancode == 0x29)
-                    return (1);
-                break;
-        }
-    }
-    return (0);
-}
-/**
  * SDL_KEYDOWN_FUNC - process input when a key is down
  * @event: union that contains structures for the different event types
 */
@@ -82,14 +57,14 @@ void SDL_KEYUP_FUNC(SDL_Event event)
  * handleInput - process input from the keyboard
  *
 */
-void handleInput(void)
+void handleInput(int *isRunning)
 {
     SDL_Event event;
 
     SDL_PollEvent(&event);
 
     if (event.type == SDL_QUIT)
-        isGameRunning = 0;
+        *isRunning = 0;
     else if (event.type == SDL_KEYDOWN)
         SDL_KEYDOWN_FUNC(event);
     else if (event.type == SDL_KEYUP)

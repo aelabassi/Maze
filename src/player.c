@@ -1,5 +1,5 @@
 #include "game.h"
-
+#include "window.h"
 void movePlayer(float DeltaTime)
 {
     float moveStep, newPlayerX, newPlayerY;

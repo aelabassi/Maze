@@ -40,8 +40,6 @@ void drawLine(int x0, int y0, int x1, int y1, color_t color);
 
 
 int create_window(SDL_instance *instance);
-void draw_maze(SDL_instance *instance);
-int poll_events();
 
 
 
