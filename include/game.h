@@ -36,7 +36,7 @@
 #define NUM_TEXTURES 8
 
 typedef uint32_t color_t;
-void handleInput(int *isGameRunning);
+void handleInput();
 /* Setup game */
 void setupPlayer(void);
 void updateFrame(void);

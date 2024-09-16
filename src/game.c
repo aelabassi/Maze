@@ -1,4 +1,8 @@
 #include "game.h"
+int isGameRunning;
+int TicksLastFrame;
+Player player;
+
 /**
  * setupPlayer - set up the player
  */
@@ -20,7 +24,6 @@
   */
     void updateFrame(void)
  {
-        int TicksLastFrame = SDL_GetTicks();
      float DeltaTime;
      int timeToWait = FRAME_TIME_LENGTH - (SDL_GetTicks() - TicksLastFrame);
 
@@ -33,6 +36,7 @@
      TicksLastFrame = SDL_GetTicks();
 
      movePlayer(DeltaTime);
+     castAllRays();
  }
 
  /*
@@ -43,6 +47,32 @@
  {
         clearColorBuffer(0xFF000000);
         renderMap();
+        renderRays();
         renderPlayer();
         renderColorBuffer(instance);
+ }
+ /**
+  * main - Entry point
+  * Return: 0 on success, 1 on failure
+  */
+ int main(void)
+ {
+     SDL_instance instance;
+     isGameRunning = create_window(&instance);
+
+     if (isGameRunning != 0)
+         return (1);
+     setupPlayer();
+     while (isGameRunning == 0)
+     {
+         handleInput();
+         updateFrame();
+         renderGame(&instance);
+
+     }
+     destroyWindow(&instance);
+
+
+
+     return (0);
  }

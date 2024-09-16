@@ -12,7 +12,7 @@ int create_window(SDL_instance *instance)
 {
     SDL_DisplayMode display;
     int fullScreenWidth, fullScreenHeight;
-	if (SDL_Init(SDL_INIT_VIDEO) != 0)
+	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     {
 		fprintf(stderr, "Unable to initialize SDL: %s\n", SDL_GetError());
 		return (1);

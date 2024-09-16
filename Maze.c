@@ -1,27 +1,53 @@
-#include "window.h"
-#include "game.h"
-/**
- * main - Entry point
- * Return: 0 on success, 1 on failure
- */
-int main(void)
+#include <SDL.h>
+#include <stdio.h>
+#include <stdbool.h>
+
+//Screen dimension constants
+const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 480;
+
+int main(__attribute__((unused)) int argc, __attribute__((unused)) char* args[] )
 {
-    SDL_instance instance;
-    isGameRunning = create_window(&instance);
+    //The window we'll be rendering to
+    SDL_Window* window = NULL;
 
-    if (isGameRunning != 0)
-        return (1);
-    setupPlayer();
-    while (isGameRunning == 0)
+    //The surface contained by the window
+    SDL_Surface* screenSurface = NULL;
+
+    //Initialize SDL
+    if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
     {
-        handleInput(&isGameRunning);
-        updateFrame();
-        renderGame(&instance);
-
+        printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
     }
-    destroyWindow(&instance);
-    
+    else
+    {
+        //Create window
+        window = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+        if( window == NULL )
+        {
+            printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
+        }
+        else
+        {
+            //Get window surface
+            screenSurface = SDL_GetWindowSurface( window );
 
+            //Fill the surface white
+            SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0xFF, 0xFF, 0xFF ) );
 
-    return (0);
+            //Update the surface
+            SDL_UpdateWindowSurface( window );
+
+            //Hack to get window to stay up
+            SDL_Event e; bool quit = false; while( quit == false ){ while( SDL_PollEvent( &e ) ){ if( e.type == SDL_QUIT ) quit = true; } }
+        }
+    }
+
+    //Destroy window
+    SDL_DestroyWindow( window );
+
+    //Quit SDL subsystems
+    SDL_Quit();
+
+    return 0;
 }

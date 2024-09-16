@@ -1,5 +1,11 @@
 #include "game.h"
 #include "window.h"
+
+/**
+ * movePlayer - move the player
+ * @DeltaTime: time elapsed since the last frame
+ */
+
 void movePlayer(float DeltaTime)
 {
     float moveStep, newPlayerX, newPlayerY;

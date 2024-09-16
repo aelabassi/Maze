@@ -57,14 +57,14 @@ void SDL_KEYUP_FUNC(SDL_Event event)
  * handleInput - process input from the keyboard
  *
 */
-void handleInput(int *isRunning)
+void handleInput()
 {
     SDL_Event event;
 
     SDL_PollEvent(&event);
 
     if (event.type == SDL_QUIT)
-        *isRunning = 0;
+        isGameRunning = 1;
     else if (event.type == SDL_KEYDOWN)
         SDL_KEYDOWN_FUNC(event);
     else if (event.type == SDL_KEYUP)
