@@ -17,6 +17,7 @@ Player player;
      player.rotationAngle = PI / 2;
      player.walkSpeed = 100;
      player.turnSpeed = 45 * (PI / 180);
+     WallTexturesready();
  }
 
  /**
@@ -46,6 +47,7 @@ Player player;
  void renderGame(SDL_instance *instance)
  {
         clearColorBuffer(0xFF000000);
+        renderWall();
         renderMap();
         renderRays();
         renderPlayer();
@@ -71,6 +73,7 @@ Player player;
 
      }
      destroyWindow(&instance);
+     freeWallTextures();
 
 
 

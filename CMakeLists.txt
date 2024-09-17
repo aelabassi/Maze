@@ -38,6 +38,6 @@ target_include_directories(Maze PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 if(MSVC)
     target_compile_options(Maze PRIVATE /W4)
 else()
-    target_compile_options(Maze PRIVATE -Wall -Werror -Wextra -Wpedantic)
+    target_compile_options(Maze PRIVATE -Wall -g -Werror -Wextra -Wpedantic)
 endif()
 
