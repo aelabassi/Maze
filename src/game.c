@@ -47,7 +47,7 @@ Player player;
  void renderGame(SDL_instance *instance)
  {
         clearColorBuffer(0xFF000000);
-        renderWall();
+        //renderWall();
         renderMap();
         renderRays();
         renderPlayer();
