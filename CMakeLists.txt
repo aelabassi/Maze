@@ -8,7 +8,8 @@ set(CMAKE_C_STANDARD_REQUIRED True)
 
 # Add SDL2 package
 find_package(SDL2 REQUIRED COMPONENTS SDL2)
-
+# find math library
+# find_library(MATH_LIBRARY m)
 # Include directories
 include_directories(${SDL2_INCLUDE_DIRS})
 
@@ -18,7 +19,7 @@ file(GLOB HEADERS "include/*.h")
 # Create executable
 add_executable(Maze ${SOURCES} ${HEADERS})
 # Link SDL2
-target_link_libraries(Maze PRIVATE SDL2::SDL2)
+target_link_libraries(Maze PRIVATE ${SDL2_LIBRARIES} m)
 
 # If you're using SDL2_image, SDL2_ttf, or SDL2_mixer, add them like this:
 # find_package(SDL2_image REQUIRED)
