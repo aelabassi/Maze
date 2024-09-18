@@ -4,6 +4,7 @@
 int isGameRunning = 1;
 int TicksLastFrame;
 Player player;
+SDL_instance instance;
 
 /**
  * setupPlayer - set up the player
@@ -62,7 +63,6 @@ Player player;
  int main(void)
  {
 
-    SDL_instance instance;
     
      isGameRunning = create_window(&instance);
  
