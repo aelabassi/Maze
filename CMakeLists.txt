@@ -5,7 +5,13 @@ project(Maze)
 # Set C standard
 set(CMAKE_C_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED True)
-
+set(ASSETS_PATH "${CMAKE_CURRENT_SOURCE_DIR}/assets")
+# configure a header file to pass the path of the assets to the code
+configure_file(
+    "${PROJECT_SOURCE_DIR}/include/config.h.in"
+    "${PROJECT_BINARY_DIR}/config.h"
+)
+include_directories("${PROJECT_BINARY_DIR}")
 # Add SDL2 package
 find_package(SDL2 REQUIRED COMPONENTS SDL2)
 # find math library

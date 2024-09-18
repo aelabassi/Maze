@@ -9,6 +9,7 @@
 #include <SDL2/SDL.h>
 #include "window.h"
 #include "upng.h"
+#include "config.h"
 /* Constants */
 
 #define PI 3.14159265
@@ -34,13 +35,14 @@
 #define MAP_NUM_COLS 20
 
 #define NUM_TEXTURES 8
+#define TEXTURE_PATH(name) ASSETS_PATH "/" name
 
 typedef uint32_t color_t;
 void handleInput(void);
 /* Setup game */
 void setupPlayer(void);
 void updateFrame(void);
-void renderGame(void);
+void renderGame(SDL_instance *instance);
 
 /**
 * Player - player components

@@ -46,14 +46,14 @@ Player player;
  * renderGame - render the game
   * @instance: The instance to render
   */
- void renderGame()
+ void renderGame(SDL_instance *instance)
  {
         clearColorBuffer(0xFF000000);
         renderWall();
         renderMap();
         renderRays();
         renderPlayer();
-        renderColorBuffer();
+        renderColorBuffer(instance);
  }
  /**
   * main - Entry point
@@ -62,7 +62,9 @@ Player player;
  int main(void)
  {
 
-     isGameRunning = create_window();
+    SDL_instance instance;
+    
+     isGameRunning = create_window(&instance);
  
      setupPlayer();
     
@@ -70,10 +72,10 @@ Player player;
      {
          handleInput();
          updateFrame();
-         renderGame();
+         renderGame(&instance);
 
      }
-     destroyWindow();
+     destroyWindow(&instance);
      freeWallTextures();
 
 

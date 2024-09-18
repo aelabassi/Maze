@@ -1,14 +1,14 @@
 #include "game.h"
 
 static const char *textureFileNames[NUM_TEXTURES] = {
-        "./assets/redbrick.png",
-        "./assets/purplestone.png",
-        "./assets/mossystone.png",
-        "./assets/graystone.png",
-        "./assets/colorstone.png",
-        "./assets/bluestone.png",
-        "./assets/wood.png",
-        "./assets/eagle.png",
+        TEXTURE_PATH("redbrick.png"),
+        TEXTURE_PATH("purplestone.png"),
+        TEXTURE_PATH("mossystone.png"),
+        TEXTURE_PATH("graystone.png"),
+        TEXTURE_PATH("colorstone.png"),
+        TEXTURE_PATH("bluestone.png"),
+        TEXTURE_PATH("wood.png"),
+        TEXTURE_PATH("eagle.png"),
 };
 
 /**
@@ -37,7 +37,7 @@ void WallTexturesready(void)
             }
         }else
         {
-            return;
+            fprintf(stderr, "Unable to load textures\n");
         }
     }
 
