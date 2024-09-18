@@ -36,11 +36,11 @@
 #define NUM_TEXTURES 8
 
 typedef uint32_t color_t;
-void handleInput();
+void handleInput(void);
 /* Setup game */
 void setupPlayer(void);
 void updateFrame(void);
-void renderGame(SDL_instance *instance);
+void renderGame(void);
 
 /**
 * Player - player components

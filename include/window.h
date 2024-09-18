@@ -25,21 +25,14 @@ typedef struct SDL_instance
 
 
 
-
 /* Functions-variables-structs for draw */
-
-int initializeWindow(void);
-void destroyWindow(SDL_instance *instance);
+int create_window(void);
+void destroyWindow(void);
 void clearColorBuffer(color_t color);
-void render_game(void);
-void renderColorBuffer(SDL_instance *instance);
+void renderColorBuffer(void);
 void drawPixel(int x, int y, color_t color);
 void drawRect(int x, int y, int width, int height, color_t color);
 void drawLine(int x0, int y0, int x1, int y1, color_t color);
-
-
-
-int create_window(SDL_instance *instance);
 
 
 

@@ -3,12 +3,13 @@
 
 static color_t *colorBuffer;
 static SDL_Texture *colorBufferTexture;
+static SDL_Window *window;
+static SDL_Renderer *renderer;
 /**
  * create_window - Create a window with a renderer
- * @instance: The instance to create
  * Return: 0 on success, 1 on failure
  */
-int create_window(SDL_instance *instance)
+int create_window()
 {
     SDL_DisplayMode display;
     int fullScreenWidth, fullScreenHeight;
@@ -20,30 +21,26 @@ int create_window(SDL_instance *instance)
     SDL_GetCurrentDisplayMode(0, &display);
     fullScreenWidth = display.w;
     fullScreenHeight = display.h;
-	instance->window = SDL_CreateWindow("SDL2 Window",
+	window = SDL_CreateWindow("SDL2 Window",
 	SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, fullScreenWidth, fullScreenHeight, 0);
-	if (!instance->window)
+	if (!window)
     {
 		fprintf(stderr, "Unable to create window: %s\n", SDL_GetError());
-		SDL_Quit();
 		return (1);
     }
 
-	instance->renderer = SDL_CreateRenderer(instance->window, -1,
-	SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    SDL_SetRenderDrawColor(instance->renderer, 255, 0, 0, 255);
-    SDL_RenderPresent(instance->renderer);
+    renderer = SDL_CreateRenderer(window, -1, 1);
 
-	if (!instance->renderer)
+    if (!renderer)
     {
-		SDL_DestroyWindow(instance->window);
 		fprintf(stderr, "Unable to create renderer: %s\n", SDL_GetError());
-        SDL_Quit();
 		return (1);
     }
+
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 
     colorBuffer = malloc(sizeof(color_t) * SCREEN_WIDTH * SCREEN_HEIGHT);
-    colorBufferTexture = SDL_CreateTexture(instance->renderer, SDL_PIXELFORMAT_RGBA32,
+    colorBufferTexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA32,
                                            SDL_TEXTUREACCESS_STREAMING, SCREEN_WIDTH, SCREEN_HEIGHT);
 	return (0);
 }
@@ -52,12 +49,12 @@ int create_window(SDL_instance *instance)
  * DestroyWindow - Destroy a window with a renderer
  *@instance: The instance to destroy
  */
-void destroyWindow(SDL_instance *instance)
+void destroyWindow()
 {
     free(colorBuffer);
     SDL_DestroyTexture(colorBufferTexture);
-    SDL_DestroyRenderer(instance->renderer);
-    SDL_DestroyWindow(instance->window);
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
     SDL_Quit();
 }
 
@@ -77,7 +74,7 @@ void clearColorBuffer(color_t color)
  *@instance: The instance to render
 */
 
-void renderColorBuffer(SDL_instance *instance)
+void renderColorBuffer()
 {
     SDL_UpdateTexture(
             colorBufferTexture,
@@ -85,8 +82,8 @@ void renderColorBuffer(SDL_instance *instance)
             colorBuffer,
             (int)(SCREEN_WIDTH * sizeof(color_t))
     );
-    SDL_RenderCopy(instance->renderer, colorBufferTexture, NULL, NULL);
-    SDL_RenderPresent(instance->renderer);
+    SDL_RenderCopy(renderer, colorBufferTexture, NULL, NULL);
+    SDL_RenderPresent(renderer);
 }
 
 /**

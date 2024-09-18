@@ -1,4 +1,5 @@
 #include "game.h"
+
 Ray rays[NUM_RAYS];
 
 static int foundHorzWallHit, foundVertWallHit;

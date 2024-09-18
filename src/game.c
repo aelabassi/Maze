@@ -1,5 +1,7 @@
 #include "game.h"
-int isGameRunning;
+#include "window.h"
+
+int isGameRunning = 1;
 int TicksLastFrame;
 Player player;
 
@@ -10,8 +12,8 @@ Player player;
  {
      player.x = SCREEN_WIDTH / 2;
      player.y = SCREEN_HEIGHT / 2;
-     player.width = 2;
-     player.height = 2;
+     player.width = 1;
+     player.height = 30;
      player.turnDirection = 0;
      player.walkDirection = 0;
      player.rotationAngle = PI / 2;
@@ -44,14 +46,14 @@ Player player;
  * renderGame - render the game
   * @instance: The instance to render
   */
- void renderGame(SDL_instance *instance)
+ void renderGame()
  {
         clearColorBuffer(0xFF000000);
         renderWall();
         renderMap();
         renderRays();
         renderPlayer();
-        renderColorBuffer(instance);
+        renderColorBuffer();
  }
  /**
   * main - Entry point
@@ -59,20 +61,19 @@ Player player;
   */
  int main(void)
  {
-     SDL_instance instance;
-     isGameRunning = create_window(&instance);
 
-     if (isGameRunning != 0)
-         return (1);
+     isGameRunning = create_window();
+ 
      setupPlayer();
-     while (isGameRunning == 0)
+    
+     while (isGameRunning)
      {
          handleInput();
          updateFrame();
-         renderGame(&instance);
+         renderGame();
 
      }
-     destroyWindow(&instance);
+     destroyWindow();
      freeWallTextures();
 
 
