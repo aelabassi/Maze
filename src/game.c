@@ -67,8 +67,9 @@ Player player;
      isGameRunning = create_window(&instance);
  
      setupPlayer();
-    
-     while (isGameRunning)
+     printf("is running: %d\n", isGameRunning);
+
+     while (isGameRunning == 0)
      {
          handleInput();
          updateFrame();
