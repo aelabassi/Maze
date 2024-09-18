@@ -1,14 +1,14 @@
 #include "game.h"
 
 static const char *textureFileNames[NUM_TEXTURES] = {
-        "../assets/redbrick.png",
-        "../assets/purplestone.png",
-        "../assets/mossystone.png",
-        "../assets/graystone.png",
-        "../assets/colorstone.png",
-        "../assets/bluestone.png",
-        "../assets/wood.png",
-        "../assets/eagle.png",
+        "./assets/redbrick.png",
+        "./assets/purplestone.png",
+        "./assets/mossystone.png",
+        "./assets/graystone.png",
+        "./assets/colorstone.png",
+        "./assets/bluestone.png",
+        "./assets/wood.png",
+        "./assets/eagle.png",
 };
 
 /**
