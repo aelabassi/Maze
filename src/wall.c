@@ -44,21 +44,11 @@ void renderFloor(int wallBottomPixel, color_t *texelColor, int x)
         textureOffsetY = (int)fabs((distance * sin(rays[x].rayAngle)) + player.y);
         textureOffsetX = (int)fabs((distance * cos(rays[x].rayAngle)) + player.x);
 
-
-        if (texture_width > 0)
-        {
 	    textureOffsetX = (int)(abs(textureOffsetX * texture_width / 30)
-                               % texture_width);
-        }else{
-            texture_width = 0;
-        }
-        if (texture_height > 0)
-        {
+                               % texture_width);    
         textureOffsetY = (int)(abs(textureOffsetY * texture_height / 30)
                                % texture_height);
-        }else{
-            texture_height = 0;
-        }
+
 
         *texelColor = wallTextures[4].
                 texture_buffer[(texture_width * textureOffsetY) + textureOffsetX];
