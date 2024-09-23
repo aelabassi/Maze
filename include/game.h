@@ -96,7 +96,7 @@ typedef  struct ray_s{
     float wallHitX;
     float wallHitY;
     float distance;
-    int wasHitVertical;
+    bool wasHitVertical;
     int wallHitContent;
 } Ray;
 

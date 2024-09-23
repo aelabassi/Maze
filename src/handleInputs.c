@@ -9,7 +9,7 @@
 void SDL_KEYDOWN_FUNC(SDL_Event event)
 {
     if (event.key.keysym.sym == SDLK_ESCAPE)
-        isGameRunning = 1;
+        isGameRunning = false;
     if (event.key.keysym.sym == SDLK_UP)
         player.walkDirection = +1;
     if (event.key.keysym.sym == SDLK_DOWN)
@@ -57,7 +57,7 @@ void SDL_KEYUP_FUNC(SDL_Event event)
  * handleInput - process input from the keyboard
  *
 */
-void handleInput()
+void handleInput(void)
 {
     SDL_Event event;
 
