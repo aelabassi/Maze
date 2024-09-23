@@ -10,6 +10,7 @@
 #include <stdbool.h>
 #include "window.h"
 #include "upng.h"
+#include "config_ubuntu.h"
 #include "config.h"
 /* Constants */
 
