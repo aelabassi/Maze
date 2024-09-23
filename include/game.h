@@ -75,8 +75,8 @@ void movePlayer(float deltaTime);
 void renderPlayer(void);
 
 /* Functions-variables-structs for map */
-int DetectCollision(float x, float y);
-int isInsideMap(float x, float y);
+bool DetectCollision(float x, float y);
+bool isInsideMap(float x, float y);
 void renderMap(void);
 int getMapValue(int row, int col);
 
@@ -102,10 +102,10 @@ typedef  struct ray_s{
 extern Ray rays[NUM_RAYS];
 
 float distanceBetweenPoints(float x1, float y1, float x2, float y2);
-int isRayFacingUp(float angle);
-int isRayFacingDown(float angle);
-int isRayFacingLeft(float angle);
-int isRayFacingRight(float angle);
+bool isRayFacingUp(float angle);
+bool isRayFacingDown(float angle);
+bool isRayFacingLeft(float angle);
+bool isRayFacingRight(float angle);
 void castAllRays(void);
 void castRay(float rayAngle, int stripId);
 void renderRays(void);

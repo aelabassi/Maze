@@ -20,7 +20,7 @@ float distanceBetweenPoints(float x1, float y1, float x2, float y2)
  * Return: true or false
  */
 
-int isRayFacingDown(float angle)
+bool isRayFacingDown(float angle)
 {
     return (angle > 0 && angle < PI);
 }
@@ -31,7 +31,7 @@ int isRayFacingDown(float angle)
  * Return: true or false
  */
 
-int isRayFacingUp(float angle)
+bool isRayFacingUp(float angle)
 {
     return (!isRayFacingDown(angle));
 }
@@ -42,7 +42,7 @@ int isRayFacingUp(float angle)
  * Return: true or false
  */
 
-int isRayFacingRight(float angle)
+bool isRayFacingRight(float angle)
 {
     return (angle < 0.5 * PI || angle > 1.5 * PI);
 }
@@ -53,7 +53,7 @@ int isRayFacingRight(float angle)
  * Return: true or false
  */
 
-int isRayFacingLeft(float angle)
+bool isRayFacingLeft(float angle)
 {
     return (!isRayFacingRight(angle));
 }
