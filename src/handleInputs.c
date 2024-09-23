@@ -64,7 +64,7 @@ void handleInput()
     SDL_PollEvent(&event);
 
     if (event.type == SDL_QUIT)
-        isGameRunning = 1;
+        isGameRunning = false;
     else if (event.type == SDL_KEYDOWN)
         SDL_KEYDOWN_FUNC(event);
     else if (event.type == SDL_KEYUP)

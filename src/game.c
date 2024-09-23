@@ -1,7 +1,7 @@
 #include "game.h"
 #include "window.h"
 
-int isGameRunning = 1;
+bool isGameRunning = false;
 int TicksLastFrame;
 Player player;
 SDL_instance instance;
@@ -69,7 +69,7 @@ SDL_instance instance;
      setupPlayer();
      printf("is running: %d\n", isGameRunning);
 
-     while (isGameRunning == 0)
+     while (isGameRunning)
      {
          handleInput();
          updateFrame();

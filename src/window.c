@@ -7,14 +7,14 @@ static SDL_Texture *colorBufferTexture;
  * create_window - Create a window with a renderer
  * Return: 0 on success, 1 on failure
  */
-int create_window(SDL_instance *instance)
+bool create_window(SDL_instance *instance)
 {
     SDL_DisplayMode display;
     int fullScreenWidth, fullScreenHeight;
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     {
 		fprintf(stderr, "Unable to initialize SDL: %s\n", SDL_GetError());
-		return (1);
+		return (false);
     }
     SDL_GetCurrentDisplayMode(0, &display);
     fullScreenWidth = display.w;
@@ -24,7 +24,7 @@ int create_window(SDL_instance *instance)
 	if (!instance->window)
     {
 		fprintf(stderr, "Unable to create window: %s\n", SDL_GetError());
-		return (1);
+		return (false);
     }
 
     instance->renderer = SDL_CreateRenderer(instance->window, -1, 1);
@@ -32,7 +32,7 @@ int create_window(SDL_instance *instance)
     if (!instance->renderer)
     {
 		fprintf(stderr, "Unable to create renderer: %s\n", SDL_GetError());
-		return (1);
+		return (false);
     }
 
     SDL_SetRenderDrawBlendMode(instance->renderer, SDL_BLENDMODE_BLEND);
@@ -40,7 +40,7 @@ int create_window(SDL_instance *instance)
     colorBuffer = malloc(sizeof(color_t) * SCREEN_WIDTH * SCREEN_HEIGHT);
     colorBufferTexture = SDL_CreateTexture(instance->renderer, SDL_PIXELFORMAT_RGBA32,
                                            SDL_TEXTUREACCESS_STREAMING, SCREEN_WIDTH, SCREEN_HEIGHT);
-	return (0);
+	return (true);
 }
 
 /**

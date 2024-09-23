@@ -7,6 +7,7 @@
 #include <math.h>
 #include <time.h>
 #include <SDL2/SDL.h>
+#include <stdbool.h>
 #include "window.h"
 #include "upng.h"
 #include "config.h"

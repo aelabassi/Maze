@@ -7,10 +7,11 @@
 #include <string.h>
 #include <math.h>
 #include <time.h>
+#include <stdbool.h>
 #include <SDL2/SDL.h>
 
 typedef uint32_t color_t;
-extern int isGameRunning;
+extern bool isGameRunning;
 
 /**
  * SDL_instance - SDL instance
@@ -26,7 +27,7 @@ typedef struct SDL_instance
 
 
 /* Functions-variables-structs for draw */
-int create_window(SDL_instance *instance);
+bool create_window(SDL_instance *instance);
 void destroyWindow(SDL_instance *instance);
 void clearColorBuffer(color_t color);
 void renderColorBuffer(SDL_instance *instance);
