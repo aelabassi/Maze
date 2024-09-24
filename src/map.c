@@ -30,7 +30,7 @@ bool DetectCollision(float x, float y)
 
     if (x < 0 || x >= MAP_NUM_COLS * TILE_SIZE ||
         y < 0 || y >= MAP_NUM_ROWS * TILE_SIZE)
-        return (0);
+        return (true);
 
     mapGridX = floor(x / TILE_SIZE);
     mapGridY = floor(y / TILE_SIZE);

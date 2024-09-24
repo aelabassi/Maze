@@ -9,7 +9,7 @@ SDL_instance instance;
 /**
  * setupPlayer - set up the player
  */
- void setupPlayer(void)
+void setupPlayer(void)
  {
      player.x = SCREEN_WIDTH / 2;
      player.y = SCREEN_HEIGHT / 2;
@@ -26,7 +26,7 @@ SDL_instance instance;
  /**
   * updateFrame - update the frame
   */
-    void updateFrame(void)
+void updateFrame(void)
  {
      float DeltaTime;
      int timeToWait = FRAME_TIME_LENGTH - (SDL_GetTicks() - TicksLastFrame);
@@ -47,15 +47,28 @@ SDL_instance instance;
  * renderGame - render the game
   * @instance: The instance to render
   */
- void renderGame(SDL_instance *instance)
+ void renderGame(void)
  {
         clearColorBuffer(0xFF000000);
         renderWall();
         renderMap();
         renderRays();
         renderPlayer();
-        renderColorBuffer(instance);
+        renderColorBuffer(&instance);
+ 
  }
+ /**
+  * destroyAll - destroy the window and textures
+  
+  */
+ void destroyAll(void)
+ {  
+    destroyWindow(&instance);
+    freeWallTextures();
+  
+ }
+
+ 
  /**
   * main - Entry point
   * Return: 0 on success, 1 on failure
@@ -67,18 +80,15 @@ SDL_instance instance;
      isGameRunning = create_window(&instance);
  
      setupPlayer();
-     printf("is running: %d\n", isGameRunning);
 
      while (isGameRunning)
      {
          handleInput();
          updateFrame();
-         renderGame(&instance);
+         renderGame();
 
      }
-     destroyWindow(&instance);
-     freeWallTextures();
-
+     destroyAll();
 
 
      return (0);

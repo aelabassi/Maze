@@ -8,9 +8,11 @@
 #include <time.h>
 #include <SDL2/SDL.h>
 #include <stdbool.h>
+#include <stdint.h>
+#include <limits.h>
 #include "window.h"
 #include "upng.h"
-#include "config_ubuntu.h"
+//#include "config_ubuntu.h"
 #include "config.h"
 /* Constants */
 
@@ -42,9 +44,7 @@
 typedef uint32_t color_t;
 void handleInput(void);
 /* Setup game */
-void setupPlayer(void);
-void updateFrame(void);
-void renderGame(SDL_instance *instance);
+void renderGame(void);
 
 /**
 * Player - player components
