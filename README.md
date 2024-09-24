@@ -20,7 +20,7 @@ SDL2 is most cross-platfrom used library for game developements, it's designed t
 
 in unix systems: Linux, and MacOs, you need only to download either the binary files of SDL2 library, or compile, following this link 
 
-`[SDL2]("https://wiki.libsdl.org/SDL2/SourceCode")`
+[SDL2]("https://wiki.libsdl.org/SDL2/SourceCode")
 
 copy past:
 
