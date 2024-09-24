@@ -137,8 +137,5 @@ texture_t wallTextures[NUM_TEXTURES];
 void WallTexturesready(void);
 void freeWallTextures(void);
 
-/* Functions-variables-structs for walls */
-
-void renderWall(void);
 
 #endif /* GAME_H */
