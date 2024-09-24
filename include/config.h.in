@@ -1,0 +1,5 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#define ASSETS_PATH "@ASSETS_PATH@"
+#endif // CONFIG_H //

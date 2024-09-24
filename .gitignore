@@ -1,5 +1,6 @@
 .vscode/
 .idea/
+cmake-build-debug/
 build/
 *.o
 *.exe
@@ -12,4 +13,8 @@ build/
 *.obj
 *~
 .DS_Store
+<<<<<<< HEAD
 cmake-build-debug/
+=======
+maze
+>>>>>>> tests-ubuntu
