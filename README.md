@@ -18,7 +18,9 @@ SDL2 is most cross-platfrom used library for game developements, it's designed t
 
 ### CMAKE:
 
-in unix systems: Linux, and MacOs, you need only to download either the binary files of SDL2 library, or compile, following this link `<a href="https://wiki.libsdl.org/SDL2/SourceCode" >SDL2</a>`
+in unix systems: Linux, and MacOs, you need only to download either the binary files of SDL2 library, or compile, following this link 
+
+`[SDL2]("https://wiki.libsdl.org/SDL2/SourceCode")`
 
 copy past:
 
@@ -32,4 +34,10 @@ Only in Linux machines i.e. Ubuntu:
 
 ```
 make build && make run
+```
+
+or:
+
+```
+gcc -Wall -Wextra -Werror -pedantic -lm src/*c -Iinclude/ -o Maze `sdl2-config --cflags` `sdl2-config --libs`
 ```
