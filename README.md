@@ -6,7 +6,7 @@ This game uses Ray casting to render 2D textures: walls, floor, ceiling; into a 
 
 ### SDL2:
 
-SDL2 is most cross-platfrom used library for game developements, it's designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D.
+SDL2 is most cross-platfrom used library for game develpements, it's designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D.
 
 ### UPNG:
 
@@ -18,7 +18,7 @@ SDL2 is most cross-platfrom used library for game developements, it's designed t
 
 ### CMAKE:
 
-in unix systems: Linux, and MacOs, you need only to download either the binary files of SDL2 library, or compile, following this link <a href="https://wiki.libsdl.org/SDL2/SourceCode">SDL2</a>
+In unix systems: Linux, and MacOs, you need only to download either the binary files of SDL2 library, or compile, following this link <a href="https://wiki.libsdl.org/SDL2/SourceCode">SDL2</a>
 
 copy past:
 
@@ -37,7 +37,7 @@ make build && make run
 or:
 
 ```
-gcc -Wall -Wextra -Werror -pedantic -lm src/*c -Iinclude/ -o Maze `sdl2-config --cflags` `sdl2-config --libs`
+gcc -Wall -Wextra -Werror -pedantic -lm src/*.c -Iinclude/ -o Maze `sdl2-config --cflags` `sdl2-config --libs`
 ```
 
 
