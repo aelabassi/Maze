@@ -23,7 +23,7 @@ void changeColorIntensity(color_t *color, float factor)
 /**
  * renderFloor - render floor projection
  *
- * @WallBottomPixel: wall bottom pixel
+ * @wallBottomPixel: wall bottom pixel
  * @texelColor: texture color for current pixel
  * @x: current element in the rays array
 */
@@ -58,7 +58,7 @@ void renderFloor(int wallBottomPixel, color_t *texelColor, int x)
 
 /**
  * renderCeil - render Ceil projection
- * @WallTopPixel: wall top pixel
+ * @wallTopPixel: wall top pixel
  * @texelColor: texture color for current pixel
  * @x: current element in the rays array
 */
