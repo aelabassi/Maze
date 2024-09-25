@@ -39,3 +39,8 @@ or:
 ```
 gcc -Wall -Wextra -Werror -pedantic -lm src/*c -Iinclude/ -o Maze `sdl2-config --cflags` `sdl2-config --libs`
 ```
+
+
+## Demo
+<iframe width="560" height="315" src="https://www.youtube.com/watch?v=V8RVFhUO8Yc&ab_channel=ElAbassiAbderrazaq" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
