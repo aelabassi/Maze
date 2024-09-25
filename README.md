@@ -42,5 +42,4 @@ gcc -Wall -Wextra -Werror -pedantic -lm src/*c -Iinclude/ -o Maze `sdl2-config -
 
 
 ## Demo
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=V8RVFhUO8Yc&ab_channel=ElAbassiAbderrazaq" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+[!Maze game demo (https://github.com/aelabassi/Maze/tree/main/assets/demo.png)]("https://www.youtube.com/watch?v=V8RVFhUO8Yc&ab_channel=ElAbassiAbderrazaq")
