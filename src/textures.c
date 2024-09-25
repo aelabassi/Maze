@@ -1,13 +1,13 @@
 #include "game.h"
 
 static const char *textureFileNames[NUM_TEXTURES] = {
-        TEXTURE_PATH("redbrick.png"),
+        TEXTURE_PATH("wood2.png"),
         TEXTURE_PATH("purplestone.png"),
         TEXTURE_PATH("mossystone.png"),
         TEXTURE_PATH("graystone.png"),
         TEXTURE_PATH("colorstone.png"),
-        TEXTURE_PATH("bluestone.png"),
-        TEXTURE_PATH("wood.png"),
+        TEXTURE_PATH("redbrick.png"),
+        TEXTURE_PATH("yajor.png"),
         TEXTURE_PATH("eagle.png"),
 };
 
